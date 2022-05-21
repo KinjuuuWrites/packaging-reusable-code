@@ -2,13 +2,13 @@
 
 ## What's reusable code?
 
-Let's say you're building a product which is spread across multiple micro-services. Generally the notion of micro-services is to develop independently, still there might be some parts of code which you'll tend to use in different micro-services.
+Let's say you're building a product which is spread across multiple micro-services. Generally the notion of micro-services is to develop independently, still there might be some parts of code which you'll tend to use in different micro-services as it is.
 
-A basic approach would be writing a piece of code in a particular micro-service and then replicating it into all the others. However this would lead to inconsistency due to using different versions of the code across the micro-services. In other words, maintaining such a code base would be difficult.
+A naive approach would be writing a piece of code in a particular micro-service and then replicating it into all the others. However this would lead to an inconsistency which is caused be using different versions of the code across different micro-services. In other words, maintaining such a code base would be difficult.
 
 ## Git Submodules?
 
-Using git submodules, you can set up a directory within your codebase with links up to another git repository. You can write up the reusable parts of the code in a standalone git repository and use it as a submodule in all your micr-services.
+Using git submodules, you can set up a directory within your codebase with links up to another git repository. You can write the reusable parts of the code in a standalone git repository and use it as a submodule in all your micr-services.
 
 However, many developer just do not prefer using git submodules. There are various reasons for it, starting from poor development experience to struggles while deploying.
 
@@ -16,7 +16,7 @@ You might want to read them in details [here](https://abildskov.io/2021/03/28/wh
 
 ## Packages
 
-Packages are small libraries of code which we install and import in our project to make our lives easier! We do not code everything from scratch. For some stuffs, we prefer the abstraction that a package can offer.
+Packages are small libraries of code which we install and import in our project to make our lives easier! We do not code everything from scratch. For some stuffs, we prefer the abstraction that a package offers.
 
 A popular package manager and registry among Javascript developers is [npm](https://www.npmjs.com/)
 
@@ -37,7 +37,7 @@ _Not a fan of following through? Head to the GitHub Repository straightway:_
 ### Middlewares (Reusable code part)
 
 Bootstrap a NodeJS project as you want and install the dependencies required.
-Herein is a basic authentication middleware that verifies a JWT token, decodes it and set's it in the request:
+Herein is a basic authentication middleware that verifies a JWT token, decodes it and set's the `_id` in the request:
 
 ```js
 // authentication.js
@@ -78,7 +78,7 @@ module.exports = {
 };
 ```
 
-You'll see that this package doesn't officially have any entry point or an express server initialized. I didn't even install or use the `express` here. This is because I'm just focusing and developing the middlewares as a standalone package and not the entire server here
+You'll see that this package doesn't _officially_ have any entry point or an express server initialized. We didn't even install or use the `express` here. This is because we're just focusing and developing the middlewares as a standalone package and not the entire server here
 
 Finally the package.json file to complete the project:
 
@@ -104,10 +104,10 @@ Finally the package.json file to complete the project:
 
 A few things to look out in the `package.json` file:
 
-- The `name` field: See how I prefixed the name with `@prc`. This is done to scope a package. Generally this is set to the name of your organization. Read in details about scoped packages [here](https://docs.npmjs.com/cli/v8/using-npm/scope)
-- The `pack` script: Used to package the pack the npm library into a tarball. Feel free to set the `pack-destination` to anywhere in your local system, however take note of it as we'll need in later!
+- The `name` field: See how we prefixed the name with `@prc`. This is done to scope a package. Generally this is set to the name of your organization. Read in details about scoped packages [here](https://docs.npmjs.com/cli/v8/using-npm/scope)
+- The `pack` script: Used to package the pack the npm library into a tarball. Feel free to set the `pack-destination` to anywhere in your local system, however take note of it as we'll need that later!
 
-> For sake of simplicity, I'll use this script to generate a tarball and install from it. In a professional setting, packages are generally published to a registry (Read more about publishing below)
+> For sake of simplicity, I'll use this script to generate a tarball and install from it. In a professional setting, packages are generally published to a registry (Read more about publishing below)!
 
 Run the following command from the project directory to generate the tarball for the package:
 
@@ -143,7 +143,7 @@ Add the middlewares package as dependencies in the `package.json` file as shown 
 }
 ```
 
-The dependency `@prd/middlewares` is set as the file path of the packaged tarball file (which was noted in the previous step). This should be a relative path and prefixed with `file:`
+The dependency `@prc/middlewares` is set as the file path of the packaged tarball file (which was noted in the previous step). This should be a relative path and prefixed with `file:`
 
 > Note: When using a published package, you might need to specify the package version, git repository or package registry details!
 
@@ -191,7 +191,7 @@ Note how we `require` the `@prc/middlewares` like any other package and use the 
 
 ## Publishing
 
-While developing a bunch of microservices with multiple developers, packaging libraries locally doesn't solve anything. Instead, developers often prefer versioning and publishing the packages. Packages are generally published to registries as private packages using npm, GitHub or sometimes behind an organization's firewall (like AWS CodeArtifact)
+While developing a bunch of micro-services with multiple developers, packaging libraries locally doesn't solve anything. Instead, developers often prefer versioning and publishing the packages. Packages are generally published to registries as private packages using npm, GitHub or sometimes behind an organization's firewall (like AWS CodeArtifact)
 
 Here's an amazing article to get started with publishing private NPM packages:
 [Creating and publishing private packages | npm Docs](https://docs.npmjs.com/creating-and-publishing-private-packages)
