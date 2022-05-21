@@ -1,5 +1,9 @@
 # Packaging Reusable Code for Micro-services (NodeJS)
 
+![Cover](https://images.unsplash.com/photo-1615678857339-4e7e51ce22db?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940)
+
+> Cover Photo by [Jiawei Zhao](https://unsplash.com/@jiaweizhao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
 ## What's reusable code?
 
 Let's say you're building a product which is spread across multiple micro-services. Generally the notion of micro-services is to develop independently, still there might be some parts of code which you'll tend to use in different micro-services as it is.
