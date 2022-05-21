@@ -1,0 +1,15 @@
+{
+  "name": "@prc/middlewares",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pack": "npm pack --pack-destination ../packages"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  }
+}
